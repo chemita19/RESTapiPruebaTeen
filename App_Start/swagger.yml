@@ -1,0 +1,108 @@
+swagger: '2.0'
+info:
+  version: '1.0.0'
+  title: API Documentation
+paths:
+  /api/matematico/MCM:
+    get:
+      summary: Endpoint to calculate the least common multiple (MCM) of provided numbers
+      parameters:
+        - name: numbers
+          in: query
+          description: Comma-separated list of numbers
+          required: true
+          type: string
+      responses:
+        200:
+          description: Successful operation
+          schema:
+            type: string
+  /api/matematico/Incrementar:
+    get:
+      summary: Endpoint to increment a number by 1
+      parameters:
+        - name: number
+          in: query
+          description: Number to increment
+          required: true
+          type: integer
+      responses:
+        200:
+          description: Successful operation
+          schema:
+            type: string
+  /api/chistes/obtener:
+    get:
+      summary: Endpoint to retrieve a joke
+      parameters:
+        - name: tipo
+          in: query
+          description: Type of joke to retrieve (Chuck or Dad)
+          required: false
+          type: string
+      responses:
+        200:
+          description: Successful operation
+          schema:
+            type: string
+  /api/chistes/guardar:
+    post:
+      summary: Endpoint to save a joke
+      parameters:
+        - name: chisteTexto
+          in: body
+          description: Text of the joke to save
+          required: true
+          schema:
+            type: object
+            properties:
+              chisteTexto:
+                type: string
+      responses:
+        200:
+          description: Successful operation
+  /api/chistes/actualizar:
+    put:
+      summary: Endpoint to update a joke by its ID
+      parameters:
+        - name: id
+          in: query
+          description: ID of the joke to update
+          required: true
+          type: integer
+        - name: nuevoChisteTexto
+          in: body
+          description: New text for the joke
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Successful operation
+  /api/chistes/borrar:
+    delete:
+      summary: Endpoint to delete a joke by its ID
+      parameters:
+        - name: id
+          in: query
+          description: ID of the joke to delete
+          required: true
+          type: integer
+      responses:
+        200:
+          description: Successful operation
+  /api/chistes/todos:
+    get:
+      summary: Endpoint to retrieve all jokes
+      responses:
+        200:
+          description: Successful operation
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                Id:
+                  type: integer
+                Texto:
+                  type: string
